@@ -1,5 +1,7 @@
 # NVidia Jetson Orin Nano
 
+[Documentation](https://docs.nvidia.com/jetson/archives/r36.4/DeveloperGuide/index.html)
+
 ## Update for Max Performance
 
 [Firmware Update](https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit#firmware)
