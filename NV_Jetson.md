@@ -78,6 +78,11 @@ ls -la /dev/video*
 v4l2-ctl --list-devices
 # to display video output
 gst-launch-1.0 nvarguscamerasrc sensor-id=0 ! nvvidconv ! nveglglessink
+# try face-recognition
+git clone https://github.com/JetsonHacksNano/CSI-Camera
+cd CSI-Camera
+python simple_camera.py
+python face_detect.py
 ```
 
 ## Wireguard (not Necessary)
