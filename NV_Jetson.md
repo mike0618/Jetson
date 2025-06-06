@@ -4,11 +4,11 @@
 
 ## Update for Max Performance
 
-**Ubuntu 22.04 host machine required**
+**Ubuntu 22.04 host machine required!**
 
 [Firmware Update](https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit#firmware)
 
-Install SDK Manager
+Install SDK Manager:
 
 ```bash
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
@@ -42,10 +42,6 @@ sudo apt install git wget curl python3-pip
 sudo apt install libelf-dev build-essential pkg-config v4l-utils opencv-data opencv-samples-data
 # install jtop
 sudo pip3 install -U jetson-stats
-# setup inputs (for cameras)
-sudo /opt/nvidia/jetson-io/jetson-io.py
-# Configure Jetson 24pin CSI Connector - Configure for compatible hw
-# V3 - IMX477, V2 - IMX219
 ```
 
 ### Build OpenCV with CUDA
@@ -73,6 +69,11 @@ pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/daa/bff3a07259968/torchv
 ### Test CSI Camera
 
 ```bash
+# setup inputs (for cameras)
+sudo /opt/nvidia/jetson-io/jetson-io.py
+# Configure Jetson 24pin CSI Connector - Configure for compatible hw
+# V3(new) - IMX477, V2(old) - IMX219
+# Save and Reboot after changes
 # check camera
 ls -la /dev/video*
 v4l2-ctl --list-devices
@@ -88,7 +89,6 @@ python face_detect.py
 ## Wireguard (not Necessary)
 
 ```bash
-sudo apt-get install libelf-dev build-essential pkg-config
 # use custom repo for 5.15.148-tegra
 git clone https://github.com/MrVasquez96/wireguard-linux-compat
 git clone https://git.zx2c4.com/wireguard-tools
