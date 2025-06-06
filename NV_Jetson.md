@@ -4,6 +4,8 @@
 
 ## Update for Max Performance
 
+**Ubuntu 22.04 host machine required**
+
 [Firmware Update](https://developer.nvidia.com/embedded/learn/get-started-jetson-orin-nano-devkit#firmware)
 
 Install SDK Manager
@@ -22,33 +24,28 @@ You will need to create a developer account.
 - Connect FC_REC and GND on the board
 - Connect the board to the laptop using the USB-C cable
 - Run SDK Manager, select Orin Nano 8Gb Developer Kit, uncheck the Host Machine
-- Select Linux Image and Flash Image only
-- Select Runtime mode and flash it.
+- Select Linux Image and other checkboxes
+- Select NVMe, set username and password "phrec" and flash it.
+*This will take about an hour*
 
 ### Install NVidia Libraries
 
 - Boot Jetson normally and after initial setup connect to the laptop
 - In SDK Manager check everything but not Linux Image
-*This will take about an hour*
 
 ### Necessary
 
 ```bash
+echo 'export PATH=/home/phrec/.local/bin:$PATH' >> .bashrc
 sudo apt update && sudo apt upgrade -y
 sudo apt install git wget curl python3-pip
-sudo apt install libelf-dev build-essential pkg-config
+sudo apt install libelf-dev build-essential pkg-config v4l-utils
 # install jtop
 sudo pip3 install -U jetson-stats
 # setup inputs (for cameras)
 sudo /opt/nvidia/jetson-io/jetson-io.py
 # Configure Jetson 24pin CSI Connector - Configure for compatible hw
 # V3 - IMX477, V2 - IMX219
-```
-
-Add to .bashrc:
-
-```bash
-echo 'export PATH=/home/phrec/.local/bin:$PATH' >> .bashrc
 ```
 
 ### Build OpenCV with CUDA
@@ -72,6 +69,16 @@ pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/daa/bff3a07259968/torchv
 ```
 
 [More Libraries compiled with CUDA if needed](https://pypi.jetson-ai-lab.dev/jp6/cu126)
+
+### Test CSI Camera
+
+```bash
+# check camera
+ls -la /dev/video*
+v4l2-ctl --list-devices
+# to display video output
+gst-launch-1.0 nvarguscamerasrc sensor-id=0 ! nvvidconv ! nveglglessink
+```
 
 ## Wireguard (not Necessary)
 
