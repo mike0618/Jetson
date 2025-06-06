@@ -39,7 +39,7 @@ You will need to create a developer account.
 echo 'export PATH=/home/phrec/.local/bin:$PATH' >> .bashrc
 sudo apt update && sudo apt upgrade -y
 sudo apt install git wget curl python3-pip
-sudo apt install libelf-dev build-essential pkg-config v4l-utils
+sudo apt install libelf-dev build-essential pkg-config v4l-utils opencv-data opencv-samples-data
 # install jtop
 sudo pip3 install -U jetson-stats
 # setup inputs (for cameras)
