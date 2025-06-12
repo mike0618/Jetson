@@ -28,11 +28,6 @@ You will need to create a developer account.
 - Select NVMe, set username and password "phrec" and flash it.
 *This will take about an hour*
 
-### Install NVidia Libraries
-
-- Boot Jetson normally and after initial setup connect to the laptop
-- In SDK Manager check everything but not Linux Image
-
 ### Necessary
 
 ```bash
@@ -79,8 +74,9 @@ ls -la /dev/video*
 v4l2-ctl --list-devices
 # to display video output
 gst-launch-1.0 nvarguscamerasrc sensor-id=0 ! nvvidconv ! nveglglessink
-# try face-recognition
+# try face-detection
 git clone https://github.com/JetsonHacksNano/CSI-Camera
+sudo apt install opencv-data opencv-samples-data
 cd CSI-Camera
 python simple_camera.py
 python face_detect.py
